@@ -1,0 +1,359 @@
+WEBVTT
+
+1
+00:00:29.180 --> 00:00:31.700
+Hello everyone, and welcome to
+
+2
+00:00:31.700 --> 00:00:35.135
+the fourth course of our
+self-driving car specialization.
+
+3
+00:00:35.135 --> 00:00:37.280
+In this course,
+we're going to focus
+
+4
+00:00:37.280 --> 00:00:39.350
+on motion planning problems,
+
+5
+00:00:39.350 --> 00:00:40.970
+as well as some of the techniques
+
+6
+00:00:40.970 --> 00:00:43.030
+we can use to solve them.
+
+7
+00:00:43.030 --> 00:00:44.770
+At a very high level,
+
+8
+00:00:44.770 --> 00:00:46.280
+the motion planning problem is
+
+9
+00:00:46.280 --> 00:00:48.380
+the task of generating
+the path and
+
+10
+00:00:48.380 --> 00:00:49.940
+velocities required to get
+
+11
+00:00:49.940 --> 00:00:53.170
+the autonomous car from
+point A to point B.
+
+12
+00:00:53.170 --> 00:00:55.940
+To do this, we will
+require the perception and
+
+13
+00:00:55.940 --> 00:00:59.000
+sensing information we
+described in previous courses.
+
+14
+00:00:59.000 --> 00:01:00.830
+As motion planning requires
+
+15
+00:01:00.830 --> 00:01:03.125
+having knowledge of
+the surrounding cars,
+
+16
+00:01:03.125 --> 00:01:06.050
+pedestrians, and other obstacles
+in the environment.
+
+17
+00:01:06.050 --> 00:01:08.450
+Because of the complexity
+of the problem,
+
+18
+00:01:08.450 --> 00:01:10.160
+it is common to decompose
+
+19
+00:01:10.160 --> 00:01:13.330
+the planning problem into
+smaller sub-problems.
+
+20
+00:01:13.330 --> 00:01:15.980
+In this course, we will focus on
+
+21
+00:01:15.980 --> 00:01:19.100
+three-stage hierarchy
+of mission planning,
+
+22
+00:01:19.100 --> 00:01:22.040
+which involves map level
+navigation which you are likely
+
+23
+00:01:22.040 --> 00:01:23.690
+familiar with from planning trips
+
+24
+00:01:23.690 --> 00:01:25.475
+with online mapping tools,
+
+25
+00:01:25.475 --> 00:01:28.010
+behavior planning which ensures
+
+26
+00:01:28.010 --> 00:01:31.040
+our driving behavior follows
+the rules of the road,
+
+27
+00:01:31.040 --> 00:01:33.020
+and local planning which ensures
+
+28
+00:01:33.020 --> 00:01:35.945
+our paths are smooth
+and collision-free.
+
+29
+00:01:35.945 --> 00:01:38.825
+Once we've introduced the
+motion planning problem
+
+30
+00:01:38.825 --> 00:01:41.765
+as well as our planning
+hierarchy in module one,
+
+31
+00:01:41.765 --> 00:01:44.540
+we will focus on methods
+to solve each of
+
+32
+00:01:44.540 --> 00:01:46.460
+the planning
+sub-problems throughout
+
+33
+00:01:46.460 --> 00:01:48.160
+the rest of the course.
+
+34
+00:01:48.160 --> 00:01:50.810
+In module two, we will discuss
+
+35
+00:01:50.810 --> 00:01:53.480
+mapping in the context
+of autonomous driving,
+
+36
+00:01:53.480 --> 00:01:56.659
+as well as how we
+represent static obstacles
+
+37
+00:01:56.659 --> 00:02:00.005
+that our planner must avoid
+during the planning process.
+
+38
+00:02:00.005 --> 00:02:02.900
+Both of these maps are
+necessary components for
+
+39
+00:02:02.900 --> 00:02:06.650
+generating a safe trajectory
+for our autonomous vehicle.
+
+40
+00:02:06.650 --> 00:02:10.880
+Next, we will focus on mission
+planning in module three,
+
+41
+00:02:10.880 --> 00:02:13.760
+which is the highest level part
+of our planning problem.
+
+42
+00:02:13.760 --> 00:02:16.970
+We will use the maps
+generated in module two,
+
+43
+00:02:16.970 --> 00:02:18.530
+to navigate as efficiently
+
+44
+00:02:18.530 --> 00:02:20.780
+as possible to our destination.
+
+45
+00:02:20.780 --> 00:02:22.535
+Moving to module four,
+
+46
+00:02:22.535 --> 00:02:25.400
+we will focus on how the
+autonomous vehicle interacts
+
+47
+00:02:25.400 --> 00:02:28.170
+with other moving agents
+in the driving scene,
+
+48
+00:02:28.170 --> 00:02:31.040
+which is a complex task
+that is essential to
+
+49
+00:02:31.040 --> 00:02:34.340
+ensuring safety during
+the planning process.
+
+50
+00:02:34.340 --> 00:02:37.010
+In module five, we will focus
+
+51
+00:02:37.010 --> 00:02:39.380
+on the sub-problem of
+behavioral planning,
+
+52
+00:02:39.380 --> 00:02:41.090
+which is the task of determining
+
+53
+00:02:41.090 --> 00:02:44.360
+which behaviors the autonomous
+vehicle should exhibit,
+
+54
+00:02:44.360 --> 00:02:46.955
+depending on the vehicles
+surrounding environment.
+
+55
+00:02:46.955 --> 00:02:50.915
+From here, we will move to
+local planning in module six.
+
+56
+00:02:50.915 --> 00:02:53.315
+Where we introduce
+a reactive planner
+
+57
+00:02:53.315 --> 00:02:55.880
+to generate trajectories
+for a bicycle model,
+
+58
+00:02:55.880 --> 00:02:58.150
+which we introduced
+in course one.
+
+59
+00:02:58.150 --> 00:03:00.580
+Finally, in module seven,
+
+60
+00:03:00.580 --> 00:03:04.010
+we conclude by creating
+a decoupled path planner and
+
+61
+00:03:04.010 --> 00:03:06.590
+velocity profile generator that
+
+62
+00:03:06.590 --> 00:03:08.630
+builds upon our reactive planner.
+
+63
+00:03:08.630 --> 00:03:11.540
+It can generate paths
+and velocity profiles,
+
+64
+00:03:11.540 --> 00:03:12.590
+that can be used by
+
+65
+00:03:12.590 --> 00:03:15.260
+an autonomous vehicle
+for on-road driving.
+
+66
+00:03:15.260 --> 00:03:17.690
+Throughout this course,
+we will be giving
+
+67
+00:03:17.690 --> 00:03:19.460
+you assignments that will test
+
+68
+00:03:19.460 --> 00:03:21.200
+your ability to implement
+
+69
+00:03:21.200 --> 00:03:24.260
+the sub-components of
+our hierarchical motion planner.
+
+70
+00:03:24.260 --> 00:03:26.360
+This will give you
+the hands-on experience
+
+71
+00:03:26.360 --> 00:03:27.755
+required to develop
+
+72
+00:03:27.755 --> 00:03:30.245
+a fully integrated
+motion planning system
+
+73
+00:03:30.245 --> 00:03:31.850
+in the final course project.
+
+74
+00:03:31.850 --> 00:03:33.215
+Where you will develop
+
+75
+00:03:33.215 --> 00:03:36.230
+a full motion planning system
+in the Carlos simulator.
+
+76
+00:03:36.230 --> 00:03:38.180
+I hope you're as excited as I am
+
+77
+00:03:38.180 --> 00:03:40.100
+to dive into the
+motion planning problem.
+
+78
+00:03:40.100 --> 00:03:42.330
+So let's get started.
