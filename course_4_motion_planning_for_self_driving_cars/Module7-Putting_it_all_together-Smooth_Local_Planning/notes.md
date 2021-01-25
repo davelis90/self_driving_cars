@@ -34,6 +34,7 @@
 - then select the best path (with an objective function > design choice)
 - the penalty should increase the further we get from the center goal e.g. displacement from center goal
 - follow reference path and deviate only if it is infeasible or collides with an obstacle
+- all goal points (different offsets) conform to the road structure
 
 ## Lesson 5: Velocity Profile Generation
 - many different factors that affect the velocity profile: reference velocities from behaviour planner, leading vehicle TTC and comfort constraints
@@ -45,3 +46,5 @@
 - circle-based collision checking method for static obstacles
 - generate velocity profiles that avoid dynamic obstacles
 - develop a state machine for behavioural planning for a stop sign scenario
+- velocity = min(ref_v, lead_vehicle_v)
+- we must reach the lead vehicle speed by the time we reach its position, otherwise we risk a collision
